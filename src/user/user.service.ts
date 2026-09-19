@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel, MongooseModule } from '@nestjs/mongoose';
 import { User } from './userSchema';
 import { Model } from 'mongoose';
+import { UserSignupDto } from '../dtos/UserSignupDto';
 
 @Injectable()
 export class UserService {
@@ -9,4 +10,15 @@ export class UserService {
     @InjectModel(User.name)
      private  userModel:Model<User>
     ){}
+
+
+    findByEmail(email:string){
+       return this.userModel.findOne({email})
+    }
+
+    create(body:UserSignupDto){
+      return this.userModel.create(body)
+    }
 }
+
+
