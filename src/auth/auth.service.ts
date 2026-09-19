@@ -2,11 +2,14 @@ import { ConflictException, Injectable, Post } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { UserSignupDto } from '../dtos/UserSignupDto';
 import * as bcrypt from 'bcrypt'
+import { UserLoginDto } from '../dtos/userLoginDto';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
 
   constructor(
-    private userService:UserService
+    private userService:UserService,
+    private jwtService:JwtService
   ){};
 
   async userSignup(body:UserSignupDto){
@@ -28,4 +31,26 @@ export class AuthService {
     userId:user.id
   }
 };
+
+async userLogin(body:UserLoginDto){
+  const user=await this.userService.findByEmail(body.email)
+  if(!user){
+    throw new ConflictException('email or password is wrong')
+  }
+
+  const hashedPassword= await bcrypt.compare(body.password,user.password)
+
+  if(!hashedPassword){
+    throw new ConflictException('email or password is wrong!')
+  }
+
+  const payload={
+    sub:user.id,
+    email:user.email
+  }
+
+  return {
+    access_token :this.jwtService.sign(payload)
+  }
+}
 }
