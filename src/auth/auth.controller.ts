@@ -12,11 +12,12 @@ export class AuthController {
 
   @Post('/signup')
   UserSignup(@Body() body:UserSignupDto){
-    this.authService.userSignup(body);
+    return this.authService.userSignup(body);
   }
 
-  @Post()
+  @Post('/login')
   UserLogin(@Body() body:UserLoginDto){
+    
     return this.authService.userLogin(body);
   }
 }

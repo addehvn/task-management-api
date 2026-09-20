@@ -38,15 +38,15 @@ async userLogin(body:UserLoginDto){
     throw new ConflictException('email or password is wrong')
   }
 
-  const hashedPassword= await bcrypt.compare(body.password,user.password)
+  const validPassword= await bcrypt.compare(body.password,user.password)
 
-  if(!hashedPassword){
+  if(!validPassword){
     throw new ConflictException('email or password is wrong!')
   }
 
   const payload={
-    sub:user.id,
-    email:user.email
+    sub:user.id.toString(),
+    email:user.email,
   }
 
   return {
