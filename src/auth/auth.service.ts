@@ -47,6 +47,7 @@ async userLogin(body:UserLoginDto){
   const payload={
     sub:user.id.toString(),
     email:user.email,
+    name :user.name
   }
 
   return {

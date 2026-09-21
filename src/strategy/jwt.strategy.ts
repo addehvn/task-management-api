@@ -19,7 +19,8 @@ constructor(
 async validate(payload:JwtPayload){
 return{
 userId:payload.sub,
-email:payload.email
+email:payload.email,
+name:payload.name
 }
 }
 }
