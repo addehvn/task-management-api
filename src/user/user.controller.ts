@@ -3,7 +3,6 @@ import { JwtGuard } from '../guards/JWT-guard';
 import type { AuthRequest } from '../interfaces/authRequest';
 import { userUpdateDto } from '../dtos/userUpdateDto';
 import { UserService } from './user.service';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
