@@ -20,7 +20,8 @@ async validate(payload:JwtPayload){
 return{
 userId:payload.sub,
 email:payload.email,
-name:payload.name
+name:payload.name,
+taskId:payload.taskId
 }
 }
 }

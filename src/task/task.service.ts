@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Task } from './taskSchema';
 import { Model } from 'mongoose';
 import { createtaskDto } from '../dtos/createTaskDto';
+import { updateTaskDto } from '../dtos/updateTaskDto';
 
 @Injectable()
 export class TaskService {
@@ -24,5 +25,14 @@ export class TaskService {
       message:'task created successfully',
       body 
     }
+  }
+
+  async updateTask(body:updateTaskDto, taskId:string){
+    const updatedTask= await this.taskModel.findByIdAndUpdate(taskId,body)
+    return {
+      mnessage : 'task updated successfully',
+      body
+    }
+    
   }
 }
