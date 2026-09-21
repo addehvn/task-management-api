@@ -4,7 +4,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 @Schema({timestamps:true})
 export class Task{
   @Prop({required:true})
-  UserId:string
+  userId:string
   @Prop({required:true})
   title:string
 

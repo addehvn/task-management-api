@@ -1,8 +1,8 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { JwtGuard } from '../guards/JWT-guard';
 import type{ AuthRequest } from '../interfaces/authRequest';
-import { AuthGuard } from '@nestjs/passport';
+import { createtaskDto } from '../dtos/createTaskDto';
 
 @Controller('task')
 export class TaskController {
@@ -10,10 +10,16 @@ export class TaskController {
     private taskService:TaskService,
     
   ){}
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   @Get('/allTasks')
   getAllTasks(@Req() req:AuthRequest){
     return this.taskService.getAllTasks(req.user.userId)
+  }
+
+  @UseGuards(JwtGuard)
+  @Post('/createTask')
+  createTask(@Req() req:AuthRequest ,@Body() body:createtaskDto){
+    return this.taskService.createTask(body,req.user.userId)
   }
 
 }

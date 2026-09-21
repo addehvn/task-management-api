@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Task } from './taskSchema';
 import { Model } from 'mongoose';
+import { createtaskDto } from '../dtos/createTaskDto';
 
 @Injectable()
 export class TaskService {
@@ -14,4 +15,14 @@ export class TaskService {
     return tasks;
   }
 
+  createTask(body:createtaskDto , userId:string){
+    this.taskModel.create(
+      {...body,
+        userId
+      })
+    return {
+      message:'task created successfully',
+      body 
+    }
+  }
 }
