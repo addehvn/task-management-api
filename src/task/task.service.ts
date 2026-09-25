@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Task } from './taskSchema';
 import { Model } from 'mongoose';
@@ -27,12 +27,22 @@ export class TaskService {
     }
   }
 
-  async updateTask(body:updateTaskDto, taskId:string){
-    const updatedTask= await this.taskModel.findByIdAndUpdate(taskId,body)
+  async updateTask(body:updateTaskDto, id:string){
+    const updatedTask= await this.taskModel.findByIdAndUpdate(id,body)
     return {
       mnessage : 'task updated successfully',
       body
     }
-    
+  }
+
+  async taskDetail(id:string){
+    return await  this.taskModel.findById(id)
+  }
+
+  async deleteTask(id:string){
+    await this.taskModel.findByIdAndDelete(id)
+    return {
+      message:"task deleted successfully"
+    }
   }
 }

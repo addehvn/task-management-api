@@ -6,8 +6,6 @@ export class Task{
   @Prop({required:true})
   userId:string
   @Prop({required:true})
-  taskId:string
-  @Prop({required:true})
   title:string
 
   @Prop()
