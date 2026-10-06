@@ -5,39 +5,39 @@ A RESTful Task Managemet API built with NestJs, TypeScript, MongoDB and JWT auth
 user can  register, login, view and update  profile , delete their account and create, view ,update and delete  tasks
 
 
-##Technologies
+## Technologies
 
--NestJs
--TypeScript
--MongoDB
--Mongoose
--JWT
--Passport
--class Validator 
-
-
-##Features 
-
--User registration and login 
--Profile view and update 
--Delete user
--create, view, update and delete tasks 
--User can access only  tasks 
--Request validation  
+- NestJs
+- TypeScript
+- MongoDB
+- Mongoose
+- JWT
+- Passport
+- class Validator 
 
 
-##Installation 
+## Features 
+
+- User registration and login 
+- Profile view and update 
+- Delete user
+- create, view, update and delete tasks 
+- User can access only  tasks 
+- Request validation  
+
+
+## Installation 
 ```bash
 npm install 
 ``` 
 
-##Runnig the app
+## Runnig the app
 ```bash
 npm run start:dev
 ```
 
 
-##API Routes 
+## API Routes 
 
 |Methode|Route|Description|
 |-------|---------|-------|
